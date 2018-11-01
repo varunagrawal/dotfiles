@@ -57,7 +57,7 @@ POWERLEVEL9K_RVM_VISUAL_IDENTIFIER_COLOR="red"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(bower brew django docker gem git github httpie jsontools node npm pip pyenv python rails ruby rvm taskwarrior tmux zsh-syntax-highlighting)
+plugins=(brew django docker fabric gem git github httpie jsontools node npm pip pyenv python rails ruby rvm taskwarrior tmux zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -91,9 +91,7 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon dir vcs)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(virtualenv pyenv rvm rbenv go_version nvm status history)
-
-source /opt/ros/lunar/setup.zsh
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(virtualenv pyenv rvm status history)
 
 export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
