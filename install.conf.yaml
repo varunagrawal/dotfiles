@@ -8,7 +8,9 @@
     ~/.bashrc: shell/.bashrc
     ~/.bash_profile: shell/.bash_profile
     ~/.dmrc: desktop/.dmrc
-    ~/.emacs: editors/.emacs
+    ~/.emacs:
+      path: editors/emacs.el
+      relink: true
     ~/.gitconfig: git/.gitconfig
     ~/.gitignore_global: git/.gitignore_global
     ~/.gtkrc-2.0: desktop/.gtkrc-2.0
