@@ -77,6 +77,8 @@
       # ram                   # free RAM
       # load                  # CPU load
       # time                  # current time
+      timewarrior             # timewarrior tracking status (https://timewarrior.net/)
+      taskwarrior             # taskwarrior task count (https://taskwarrior.org/)
       # =========================[ Line #2 ]=========================
       newline
       # public_ip             # public IP address

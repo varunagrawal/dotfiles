@@ -1,23 +1,14 @@
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block, everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/home/varun/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-# ZSH_THEME="robbyrussell"
 POWERLEVEL9K_MODE='nerdfont-complete'
-#ZSH_THEME="powerlevel9k/powerlevel9k"
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # Set list of themes to pick from when loading at random
@@ -79,11 +70,19 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(archlinux
+	 brew
+	 docker
+	 emacs
 	 git
+	 gitfast
 	 github
+	 gitignore
 	 golang
 	 jump
-	 pip poetry postgres pyenv python
+	 pip
+	 postgres
+	 pyenv
+	 python
 	 tmux
 	 vscode
 	 zsh-syntax-highlighting)
@@ -115,10 +114,19 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+alias sudo='sudo '
+alias emacs="emacs"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
+## Pyenv
+export PATH="/home/vagrawal/.pyenv/bin:$PATH"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
+# export PYTHONPATH=/home/vagrawal/.pyenv/shims/python:$PYTHONPATH
+
+## NVM
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
@@ -127,4 +135,14 @@ export LC_ALL=en_US.UTF-8
 export LANG=en_us.UTF-8
 export LC_CTYPE=en_US.UTF-8
 
-source /etc/profile.d/autojump.zsh
+export PATH=$PATH:/home/vagrawal/.local/bin/
+
+. /usr/share/autojump/autojump.sh
+autoload -Uz compinit && compinit -u
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"
+
+# ROS 2
+source /opt/ros/eloquent/setup.zsh
+export ROS_DOMAIN_ID=155
