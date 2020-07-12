@@ -80,6 +80,7 @@ plugins=(archlinux
 	 golang
 	 jump
 	 pip
+	 poetry
 	 postgres
 	 pyenv
 	 python
