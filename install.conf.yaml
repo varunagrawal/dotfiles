@@ -16,8 +16,7 @@
     ~/.gtkrc-2.0: desktop/.gtkrc-2.0
     ~/.p10k.zsh: shell/.p10k.zsh
     ~/.shell.pre-oh-my-zsh: shell/.shell.pre-oh-my-zsh
-    ~/.tmux.conf: tools/.tmux.conf
-    ~/.yarnrc: tools/.yarnrc
+    ~/.tmux.conf: tools/tmux.conf
     ~/.zshrc: shell/.zshrc
 
     # ~/.vim: vim

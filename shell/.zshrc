@@ -69,24 +69,25 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(archlinux
-	 brew
-	 docker
-	 emacs
-	 git
-	 gitfast
-	 github
-	 gitignore
-	 golang
-	 jump
-	 pip
-	 poetry
-	 postgres
-	 pyenv
-	 python
-	 tmux
-	 vscode
-	 zsh-syntax-highlighting)
+plugins=(
+    archlinux
+    brew
+    docker
+    emacs
+    git
+    gitfast
+    github
+    gitignore
+    golang
+    jump
+    pip
+    postgres
+    pyenv
+    python
+    tmux
+    vscode
+    zsh-syntax-highlighting
+)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -147,3 +148,7 @@ export PATH="$PATH:$HOME/.rvm/bin"
 # ROS 2
 source /opt/ros/eloquent/setup.zsh
 export ROS_DOMAIN_ID=155
+
+# Deno
+#export DENO_INSTALL="/home/vagrawal/.deno"
+#export PATH="$DENO_INSTALL/bin:$PATH"
