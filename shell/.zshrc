@@ -123,10 +123,17 @@ alias emacs="emacs"
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 ## Pyenv
-export PATH="/home/vagrawal/.pyenv/bin:$PATH"
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
+# eval "$(pyenv virtualenv-init -)"
 # export PYTHONPATH=/home/vagrawal/.pyenv/shims/python:$PYTHONPATH
+
+## Poetry (Python Dependency Management)
+source ~/.poetry/env
+
+# Python user space
+PATH=$PATH:~/.local/bin
 
 ## NVM
 export NVM_DIR="$HOME/.nvm"
@@ -139,15 +146,15 @@ export LC_CTYPE=en_US.UTF-8
 
 export PATH=$PATH:/home/vagrawal/.local/bin/
 
-. /usr/share/autojump/autojump.sh
+. /usr/share/autojump/autojump.zsh
 autoload -Uz compinit && compinit -u
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
 
 # ROS 2
-source /opt/ros/eloquent/setup.zsh
-export ROS_DOMAIN_ID=155
+# source /opt/ros/eloquent/setup.zsh
+# export ROS_DOMAIN_ID=155
 
 # Deno
 #export DENO_INSTALL="/home/vagrawal/.deno"
