@@ -129,9 +129,6 @@ eval "$(pyenv init -)"
 # eval "$(pyenv virtualenv-init -)"
 # export PYTHONPATH=/home/vagrawal/.pyenv/shims/python:$PYTHONPATH
 
-## Poetry (Python Dependency Management)
-source ~/.poetry/env
-
 # Python user space
 PATH=$PATH:~/.local/bin
 
