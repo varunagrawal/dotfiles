@@ -1,11 +1,21 @@
 [user]
 	email = varagrawal@gmail.com
 	name = Varun Agrawal
-[core]
-	autocrlf = input
+
 [alias]
-	hist = log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
+	co = checkout
+	ci = commit
 	st = status
 	br = branch
+	hist = log --pretty=format:'%C(cyan)[%ad]%C(reset) %C(magenta)[%h]%C(reset) | %C(green)%s %C(blue)[%an]%C(reset) %C(yellow)%d%C(reset)' --graph --date=short
 	type = cat-file -t
 	dump = cat-file -p
+	# Special shell command to delete branches which have been merged. If no branches to delete, we get the message `fatal: branch name required`.
+	delete-merged = "! git branch --merged | egrep -v \"(^\\*|master|dev)\" | xargs git branch -d || echo \"No branches to delete.\""
+
+[core]
+	editor = emacs -nw
+	excludesfile = ~/.gitignore_global
+
+[init]
+	templatedir = ~/.git-templates
