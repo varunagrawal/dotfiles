@@ -142,6 +142,10 @@ eval "$(pyenv init -)"
 # eval "$(pyenv virtualenv-init -)"
 # export PYTHONPATH=/home/vagrawal/.pyenv/shims/python:$PYTHONPATH
 
+## Hack to allow CMake to find the Python build files
+export CMAKE_PREFIX_PATH="${HOME}/.pyenv/versions/$(pyenv version-name):$CMAKE_PREFIX_PATH"
+# export CPATH="/home/varun/.pyenv/versions/3.8.6/include:$CPATH"
+
 # Python user space
 PATH=$PATH:~/.local/bin
 
@@ -173,5 +177,9 @@ export PATH="$PATH:$HOME/.rvm/bin"
 # POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon dir vcs)
 # POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(virtualenv pyenv rvm status history)
 
+# Enable homebrew
 export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
 eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
+
+# Add homebrew include path so that CMake can find it.
+export CPATH="/home/linuxbrew/.linuxbrew/include:$CPATH"
