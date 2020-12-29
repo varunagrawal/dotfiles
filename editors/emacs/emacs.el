@@ -1,8 +1,4 @@
 ;; Put autosave files (ie #foo#) and backup files (ie foo~) in ~/.emacs.d/.
-;(custom-set-variables
-; '(auto-save-file-name-transforms '((".*" "~/.emacs.d/autosaves/\\1" t)))
-; '(backup-directory-alist '((".*" . "~/.emacs.d/backups/"))))
-
 ;; create the autosave dir if necessary, since emacs won't.
 ;(make-directory "~/.emacs.d/autosaves/" t)
 ;(make-directory "~/.emacs.d/backups/" t)
@@ -17,8 +13,8 @@
       (current (float-time (current-time))))
   (dolist (file (directory-files temporary-file-directory t))
     (when (and (backup-file-name-p file)
-	       (> (- current (float-time (nth 5 (file-attributes file))))
-		  week))
+         (> (- current (float-time (nth 5 (file-attributes file))))
+      week))
       (message "%s" file)
             (delete-file file))))
 
@@ -26,12 +22,12 @@
 (setq c-default-style "linux"
       c-basic-offset 4)
 
-;; packages
-(when (>= emacs-major-version 24)
-  (require 'package)
-  (package-initialize)
-  (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
-  )
+(setq x-select-enable-clipboard t)
+
+;; Setup packages
+(require 'package)
+(package-initialize)
+(add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -56,5 +52,6 @@
 
 ; set different themes for window and terminal versions
 (if (display-graphic-p) 
-    (enable-theme 'dakrone) 
-  (enable-theme 'spacemacs-dark))
+  (enable-theme 'dakrone) 
+;  (enable-theme 'spacemacs-dark)
+)

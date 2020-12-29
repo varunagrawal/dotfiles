@@ -185,3 +185,6 @@ eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
 
 # Add homebrew include path so that CMake can find it.
 export CPATH="/home/linuxbrew/.linuxbrew/include:$CPATH"
+
+# Add homebrew libraries for dynamic linking
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/linuxbrew/.linuxbrew/lib/

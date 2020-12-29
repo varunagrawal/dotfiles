@@ -1,37 +1,5 @@
-;; auto save directory
-(setq backup-directory-alist
-          `((".*" . ,"~/.emacs_saves")))
-    (setq auto-save-file-name-transforms
-          `((".*" ,"~/.emacs_saves" t)))
-
-(message "Deleting old backup files...")
-(let ((week (* 60 60 24 7))
-      (current (float-time (current-time))))
-  (dolist (file (directory-files temporary-file-directory t))
-    (when (and (backup-file-name-p file)
-	       (> (- current (float-time (nth 5 (file-attributes file))))
-		  week))
-      (message "%s" file)
-            (delete-file file))))
-
-; set the c indent style to linux rather than the default GNU style
-(setq c-default-style "linux"
-      c-basic-offset 4)
-
-(setq x-select-enable-clipboard t)
 
 
-;; packages
-(when (>= emacs-major-version 24)
-  (require 'package)
-  (package-initialize)
-  (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
-  )
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
  '(beacon-color "#ec4780")
  '(custom-enabled-themes (quote (ample-zen)))
  '(custom-safe-themes
@@ -53,9 +21,3 @@
  '(pos-tip-background-color "#3a3a3a")
  '(pos-tip-foreground-color "#9E9E9E")
  '(tabbar-background-color "#353535"))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
