@@ -16,6 +16,7 @@
 [core]
 	editor = emacs -nw
 	excludesfile = ~/.gitignore_global
+	autocrlf = input
 
 [init]
 	templatedir = ~/.git-templates
