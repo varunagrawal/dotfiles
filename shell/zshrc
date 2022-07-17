@@ -1,3 +1,10 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
@@ -133,7 +140,10 @@ alias sudo='sudo '
 alias emacs="emacs"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+# [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+# To customize prompt, run `p10k configure` or edit ~/dotfiles/shell/.p10k.zsh.
+[[ ! -f ~/dotfiles/shell/.p10k.zsh ]] || source ~/dotfiles/shell/.p10k.zsh
+
 
 export LC_ALL=en_US.UTF-8
 export LANG=en_us.UTF-8
@@ -148,6 +158,9 @@ export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
 # eval "$(pyenv virtualenv-init -)"
 # export PYTHONPATH=$HOME/.pyenv/shims/python:$PYTHONPATH
+
+# Fix issue with Pyenv which causes this variable to be set to system.
+unset PYENV_VERSION
 
 ## Hack to allow CMake to find the Python build files
 export CMAKE_PREFIX_PATH="${HOME}/.pyenv/versions/$(pyenv version-name):$CMAKE_PREFIX_PATH"
@@ -180,7 +193,7 @@ export PATH="$PATH:$HOME/.rvm/bin"
 
 ## Homebrew
 # Enable homebrew
-export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
+export PATH="$PATH:/home/linuxbrew/.linuxbrew/bin"
 eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
 
 # Add homebrew include path so that CMake can find it.
@@ -188,3 +201,15 @@ export CPATH="/home/linuxbrew/.linuxbrew/include:$CPATH"
 
 # Add homebrew libraries for dynamic linking
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/linuxbrew/.linuxbrew/lib/
+
+export HOMEBREW_GITHUB_API_TOKEN=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
+
+## CUDA
+export PATH=$PATH:/usr/local/cuda/bin
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/cuda/lib64
+
+## SDKMAN
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
