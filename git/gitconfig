@@ -7,11 +7,11 @@
 	ci = commit
 	st = status
 	br = branch
-	hist = log --pretty=format:'%C(cyan)[%ad]%C(reset) %C(magenta)[%h]%C(reset) | %C(green)%s %C(blue)[%an]%C(reset) %C(yellow)%d%C(reset)' --graph --date=short
+	hist = log --pretty=format:'%C(cyan)[%ad]%C(reset) %C(magenta)[%h]%C(reset) | %C(green)%s %C(blue)[%an]%C(reset)%C(red italic)(%ae)%C(reset) %C(yellow)%d%C(reset)' --graph --date=short
 	type = cat-file -t
 	dump = cat-file -p
 	# Special shell command to delete branches which have been merged. If no branches to delete, we get the message `fatal: branch name required`.
-	delete-merged = "! git branch --merged | egrep -v \"(^\\*|master|dev)\" | xargs git branch -d || echo \"No branches to delete.\""
+	delete-merged = "! git fetch && git branch --merged | egrep -v \"(^\\*|master|dev)\" | xargs git branch -d || echo \"No branches to delete.\""
 
 [core]
 	editor = emacs -nw
