@@ -1,23 +1,42 @@
+;; Put autosave files (ie #foo#) and backup files (ie foo~) in ~/.emacs.d/.
+;; create the autosave dir if necessary, since emacs won't.
+;(make-directory "~/.emacs.d/autosaves/" t)
+;(make-directory "~/.emacs.d/backups/" t)
 
+(setq backup-directory-alist
+      `((".*" . ,temporary-file-directory)))
+(setq auto-save-file-name-transforms
+      `((".*" ,temporary-file-directory t)))
 
- '(beacon-color "#ec4780")
- '(custom-enabled-themes (quote (ample-zen)))
- '(custom-safe-themes
-   (quote
-    ("1db337246ebc9c083be0d728f8d20913a0f46edc0a00277746ba411c149d7fe5" "ff7625ad8aa2615eae96d6b4469fcc7d3d20b2e1ebc63b761a349bebbb9d23cb" "a1289424bbc0e9f9877aa2c9a03c7dfd2835ea51d8781a0bf9e2415101f70a7e" "5a0eee1070a4fc64268f008a4c7abfda32d912118e080e18c3c865ef864d1bea" "f9574c9ede3f64d57b3aa9b9cef621d54e2e503f4d75d8613cbcc4ca1c962c21" default)))
- '(evil-emacs-state-cursor (quote ("#E57373" hbar)))
- '(evil-insert-state-cursor (quote ("#E57373" bar)))
- '(evil-normal-state-cursor (quote ("#FFEE58" box)))
- '(evil-visual-state-cursor (quote ("#C5E1A5" box)))
- '(highlight-indent-guides-auto-enabled nil)
- '(highlight-symbol-colors
-   (quote
-    ("#FFEE58" "#C5E1A5" "#80DEEA" "#64B5F6" "#E1BEE7" "#FFCC80")))
- '(highlight-symbol-foreground-color "#E0E0E0")
- '(highlight-tail-colors (quote (("#ec4780" . 0) ("#424242" . 100))))
- '(package-selected-packages
-   (quote
-    (ample-zen-theme dracula-theme abyss-theme apropospriate-theme zonokai-theme atom-dark-theme)))
- '(pos-tip-background-color "#3a3a3a")
- '(pos-tip-foreground-color "#9E9E9E")
- '(tabbar-background-color "#353535"))
+(message "Deleting old backup files...")
+(let ((week (* 60 60 24 7))
+      (current (float-time (current-time))))
+  (dolist (file (directory-files temporary-file-directory t))
+    (when (and (backup-file-name-p file)
+         (> (- current (float-time (nth 5 (file-attributes file))))
+      week))
+      (message "%s" file)
+            (delete-file file))))
+
+; set the c indent style to linux rather than the default GNU style
+(setq c-default-style "linux"
+      c-basic-offset 4)
+
+(setq x-select-enable-clipboard t)
+
+;; Setup packages
+(require 'package)
+(add-to-list 'package-archives
+  '("melpa" . "http://melpa.org/packages/") t)
+(package-initialize)
+
+; Load theme
+(load-theme 'dakrone t)
+
+; set different themes for window and terminal versions
+(if (display-graphic-p) 
+  (enable-theme 'dakrone) 
+;  (enable-theme 'foggy-night)
+;  (enable-theme 'spacemacs-dark)
+;  (enable-theme 'spacemacs-theme))
+)

@@ -76,6 +76,21 @@ POWERLEVEL9K_RVM_VISUAL_IDENTIFIER_COLOR="red"
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
+## Pyenv
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init --path)"
+# eval "$(pyenv virtualenv-init -)"
+# export PYTHONPATH=$HOME/.pyenv/shims/python:$PYTHONPATH
+
+#NOTE: Pyenv is installed via homebrew. If you get an error about missing pyenv, check the symlink to ~/.pyenv/bin.
+
+## Hack to allow CMake to find the Python build files
+export CMAKE_PREFIX_PATH="${HOME}/.pyenv/versions/$(pyenv version-name):$CMAKE_PREFIX_PATH"
+
+# Python user space
+PATH=$PATH:~/.local/bin
+
 # Which plugins would you like to load?
 # Standard plugins can be found in ~/.oh-my-zsh/plugins/*
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
@@ -152,22 +167,6 @@ export LC_CTYPE=en_US.UTF-8
 # POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon dir vcs)
 # POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(virtualenv pyenv rvm status history)
 
-## Pyenv
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
-# eval "$(pyenv virtualenv-init -)"
-# export PYTHONPATH=$HOME/.pyenv/shims/python:$PYTHONPATH
-
-# Fix issue with Pyenv which causes this variable to be set to system.
-unset PYENV_VERSION
-
-## Hack to allow CMake to find the Python build files
-export CMAKE_PREFIX_PATH="${HOME}/.pyenv/versions/$(pyenv version-name):$CMAKE_PREFIX_PATH"
-
-# Python user space
-PATH=$PATH:~/.local/bin
-
 ## NVM
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -213,3 +212,12 @@ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/cuda/lib64
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+
+## Pytest Autocomplete
+# Prerequisite: pip install argcomplete
+autoload -Uz bashcompinit && bashcompinit
+eval "$(register-python-argcomplete pytest)"
+
+## Ruby
+export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@3)"
+source "$HOME/.rvm/scripts/rvm"
