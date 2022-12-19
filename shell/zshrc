@@ -15,13 +15,13 @@ export ZSH="$HOME/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-POWERLEVEL9K_MODE='nerdfont-complete'
+# POWERLEVEL9K_MODE='nerdfont-complete'
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
-POWERLEVEL9K_VIRTUALENV_BACKGROUND="30"
-POWERLEVEL9K_RVM_BACKGROUND="black"
-POWERLEVEL9K_RVM_FOREGROUND="249"
-POWERLEVEL9K_RVM_VISUAL_IDENTIFIER_COLOR="red"
+# POWERLEVEL9K_VIRTUALENV_BACKGROUND="30"
+# POWERLEVEL9K_RVM_BACKGROUND="black"
+# POWERLEVEL9K_RVM_FOREGROUND="249"
+# POWERLEVEL9K_RVM_VISUAL_IDENTIFIER_COLOR="red"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -101,26 +101,24 @@ plugins=(
     brew
     docker
     emacs
-    fabric
     gem
     git
     gitfast
     github
     gitignore
-    golang
     jsontools
     jump
     node
     npm
     pip
     postgres
+    poetry
     pyenv
     python
     ruby
     rvm
     taskwarrior
     tmux
-    vscode
     zsh-syntax-highlighting
 )
 
@@ -157,67 +155,17 @@ alias emacs="emacs"
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 # [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 # To customize prompt, run `p10k configure` or edit ~/dotfiles/shell/.p10k.zsh.
-[[ ! -f ~/dotfiles/shell/.p10k.zsh ]] || source ~/dotfiles/shell/.p10k.zsh
-
-
-export LC_ALL=en_US.UTF-8
-export LANG=en_us.UTF-8
-export LC_CTYPE=en_US.UTF-8
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+# [[ ! -f ~/dotfiles/shell/.p10k.zsh ]] || source ~/dotfiles/shell/.p10k.zsh
 
 # POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon dir vcs)
 # POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(virtualenv pyenv rvm status history)
 
-## NVM
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-export PATH=$PATH:$HOME/.local/bin/
-
-## Autojump
-. /usr/share/autojump/autojump.zsh
-autoload -Uz compinit && compinit -u
-
-## RVM
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
-
-## ROS 2
-# source /opt/ros/eloquent/setup.zsh
-# export ROS_DOMAIN_ID=155
-
-## Deno
-#export DENO_INSTALL="$HOME/.deno"
-#export PATH="$DENO_INSTALL/bin:$PATH"
-
-## Homebrew
-# Enable homebrew
-export PATH="$PATH:/home/linuxbrew/.linuxbrew/bin"
-eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
-
-# Add homebrew include path so that CMake can find it.
-export CPATH="/home/linuxbrew/.linuxbrew/include:$CPATH"
-
-# Add homebrew libraries for dynamic linking
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/linuxbrew/.linuxbrew/lib/
-
-export HOMEBREW_GITHUB_API_TOKEN=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
-
-## CUDA
-export PATH=$PATH:/usr/local/cuda/bin
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/cuda/lib64
-
-## SDKMAN
-
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="$HOME/.sdkman"
-[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
-
-## Pytest Autocomplete
-# Prerequisite: pip install argcomplete
-autoload -Uz bashcompinit && bashcompinit
-eval "$(register-python-argcomplete pytest)"
-
-## Ruby
-export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@3)"
-source "$HOME/.rvm/scripts/rvm"
+case `uname` in
+  Darwin)
+    source $HOME/.zsh_macos
+  ;;
+  Linux)
+    source $HOME/.zsh_linux
+  ;;
+esac

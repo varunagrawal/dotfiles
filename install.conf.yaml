@@ -20,6 +20,8 @@
     ~/.shell.pre-oh-my-zsh: shell/.shell.pre-oh-my-zsh
     ~/.tmux.conf: tools/tmux.conf
     ~/.zshrc: shell/zshrc
+    ~/.zsh_linux: shell/zsh_linux
+    ~/.zsh_macos: shell/zsh_macos
 
     # ~/.vim: vim
     # ~/.vimrc: vimrc
