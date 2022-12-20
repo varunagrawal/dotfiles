@@ -5,6 +5,7 @@ export PATH="$PATH:$(brew --prefix)/bin/python3"
 ### chruby
 source $(brew --prefix)/opt/chruby/share/chruby/chruby.sh
 source $(brew --prefix)/opt/chruby/share/chruby/auto.sh
+chruby ruby-3.1.3
 
 ### SDKMAN
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
