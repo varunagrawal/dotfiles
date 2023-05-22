@@ -169,3 +169,5 @@ case `uname` in
     source $HOME/.zsh_linux
   ;;
 esac
+
+export CMAKE_PREFIX_PATH=~/borglab/libs:$CMAKE_PREFIX_PATH
