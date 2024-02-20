@@ -15,3 +15,8 @@ export NVM_DIR="$HOME/.nvm"
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+
+source '/home/varun/.nvm/versions/node/v15.4.0/lib/node_modules/@hyperupcall/autoenv/activate.sh'
+
+# Rust
+. "$HOME/.cargo/env"

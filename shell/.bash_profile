@@ -65,3 +65,7 @@ export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
 [[ -f ~/.bashrc ]] && . ~/.bashrc
 
 export PATH="$HOME/.poetry/bin:$PATH"
+source '/home/varun/.nvm/versions/node/v15.4.0/lib/node_modules/@hyperupcall/autoenv/activate.sh'
+
+# Rust
+. "$HOME/.cargo/env"

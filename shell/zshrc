@@ -91,6 +91,11 @@ export CMAKE_PREFIX_PATH="${HOME}/.pyenv/versions/$(pyenv version-name):$CMAKE_P
 # Python user space
 PATH=$PATH:~/.local/bin
 
+### Autoenv
+# Source .env file within a directory. Useful for running `source devel/setup.zsh` for ROS
+# NOTE this needs to be before the plugin is loaded.
+source '/home/varun/.nvm/versions/node/v15.4.0/lib/node_modules/@hyperupcall/autoenv/activate.sh'
+
 # Which plugins would you like to load?
 # Standard plugins can be found in ~/.oh-my-zsh/plugins/*
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
@@ -98,6 +103,7 @@ PATH=$PATH:~/.local/bin
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
     archlinux
+    autoenv
     brew
     docker
     emacs
@@ -119,6 +125,8 @@ plugins=(
     rvm
     taskwarrior
     tmux
+    virtualenv
+    vscode
     zsh-syntax-highlighting
 )
 
@@ -164,10 +172,67 @@ alias emacs="emacs"
 case `uname` in
   Darwin)
     source $HOME/.zsh_macos
+    export CMAKE_PREFIX_PATH=~/borglab/libs:$CMAKE_PREFIX_PATH
   ;;
   Linux)
     source $HOME/.zsh_linux
   ;;
 esac
 
-export CMAKE_PREFIX_PATH=~/borglab/libs:$CMAKE_PREFIX_PATH
+## NVM
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+export PATH=$PATH:$HOME/.local/bin/
+
+## Autojump
+. /usr/share/autojump/autojump.zsh
+autoload -Uz compinit && compinit -u
+
+## RVM
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"
+
+## ROS 2
+source /opt/ros/iron/setup.zsh
+# export ROS_DOMAIN_ID=155
+
+## Deno
+#export DENO_INSTALL="$HOME/.deno"
+#export PATH="$DENO_INSTALL/bin:$PATH"
+
+## Homebrew
+if [ "$(command -v brew)" ]; then
+  # Enable homebrew
+  export PATH="$PATH:/home/linuxbrew/.linuxbrew/bin"
+  eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
+
+  # Add homebrew include path so that CMake can find it.
+  export CPATH="$CPATH:/home/linuxbrew/.linuxbrew/include"
+
+  # Add homebrew libraries for dynamic linking
+  export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/linuxbrew/.linuxbrew/lib/
+
+  export HOMEBREW_GITHUB_API_TOKEN=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
+
+  ## Ruby
+  export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@3)"
+  source "$HOME/.rvm/scripts/rvm"
+
+fi
+
+## CUDA
+export PATH=$PATH:/usr/local/cuda/bin
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/cuda/lib64
+
+## Pytest Autocomplete
+# Prerequisite: pip install argcomplete
+autoload -Uz bashcompinit && bashcompinit
+eval "$(register-python-argcomplete pytest)"
+
+## SDKMAN
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
