@@ -1,6 +1,7 @@
 [user]
 	email = varagrawal@gmail.com
 	name = Varun Agrawal
+	signingkey = D4E1241C13C5C282
 
 [alias]
 	co = checkout
@@ -11,7 +12,7 @@
 	type = cat-file -t
 	dump = cat-file -p
 	# Special shell command to delete branches which have been merged. If no branches to delete, we get the message `fatal: branch name required`.
-	delete-merged = "! git fetch && git branch --merged | egrep -v \"(^\\*|master|dev)\" | xargs git branch -d || echo \"No branches to delete.\""
+	delete-merged = "! git fetch && git branch --merged | egrep -v \"(^\\*|master|dev|main|develop)\" | xargs git branch -d || echo \"No branches to delete.\""
 
 [core]
 	editor = emacs -nw
@@ -20,3 +21,9 @@
 
 [init]
 	templatedir = ~/.git-templates
+[commit]
+	gpgsign = true
+[tag]
+	gpgSign = true
+[gpg]
+	program = /opt/homebrew/bin/gpg
