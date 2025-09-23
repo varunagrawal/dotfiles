@@ -18,7 +18,7 @@ autoload -Uz compinit && compinit -u
 export PATH="$PATH:$HOME/.rvm/bin"
 
 ## ROS 2
-# source /opt/ros/eloquent/setup.zsh
+source /opt/ros/iron/setup.zsh
 # export ROS_DOMAIN_ID=155
 
 ## Deno
@@ -26,17 +26,24 @@ export PATH="$PATH:$HOME/.rvm/bin"
 #export PATH="$DENO_INSTALL/bin:$PATH"
 
 ## Homebrew
-# Enable homebrew
-export PATH="$PATH:/home/linuxbrew/.linuxbrew/bin"
-eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
+if [ "$(command -v brew)" ]; then
+  # Enable homebrew
+  export PATH="$PATH:/home/linuxbrew/.linuxbrew/bin"
+  eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
 
-# Add homebrew include path so that CMake can find it.
-export CPATH="/home/linuxbrew/.linuxbrew/include:$CPATH"
+  # Add homebrew include path so that CMake can find it.
+  export CPATH="/home/linuxbrew/.linuxbrew/include:$CPATH"
 
-# Add homebrew libraries for dynamic linking
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/linuxbrew/.linuxbrew/lib/
+  # Add homebrew libraries for dynamic linking
+  export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/linuxbrew/.linuxbrew/lib/
 
-export HOMEBREW_GITHUB_API_TOKEN=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
+  export HOMEBREW_GITHUB_API_TOKEN=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
+
+  ## Ruby
+  export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@3)"
+  source "$HOME/.rvm/scripts/rvm"
+
+fi
 
 ## CUDA
 export PATH=$PATH:/usr/local/cuda/bin
