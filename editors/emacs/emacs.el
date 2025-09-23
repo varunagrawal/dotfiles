@@ -30,8 +30,9 @@
   '("melpa" . "http://melpa.org/packages/") t)
 (package-initialize)
 
-; Load theme
-(load-theme 'dakrone t)
+; Install and load theme
+;(package-install "dakrone-theme")
+;(load-theme 'dakrone t)
 
 ; set different themes for window and terminal versions
 (if (display-graphic-p) 
