@@ -13,10 +13,6 @@ export PATH=$PATH:$HOME/.local/bin/
 . /usr/share/autojump/autojump.zsh
 autoload -Uz compinit && compinit -u
 
-## RVM
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
-
 ## ROS 2
 source /opt/ros/iron/setup.zsh
 # export ROS_DOMAIN_ID=155
@@ -49,16 +45,6 @@ fi
 export PATH=$PATH:/usr/local/cuda/bin
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/cuda/lib64
 
-## SDKMAN
-
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="$HOME/.sdkman"
-[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
-
-## Pytest Autocomplete
-# Prerequisite: pip install argcomplete
-autoload -Uz bashcompinit && bashcompinit
-eval "$(register-python-argcomplete pytest)"
 
 ## Ruby
 export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@3)"

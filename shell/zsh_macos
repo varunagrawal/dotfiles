@@ -25,8 +25,8 @@ unset __conda_setup
 
 # >>> mamba initialize >>>
 # !! Contents within this block are managed by 'mamba init' !!
-export MAMBA_EXE='/Users/varunagrawal/.pyenv/versions/anaconda3-2023.09-0/bin/micromamba';
-export MAMBA_ROOT_PREFIX='/Users/varunagrawal/micromamba';
+export MAMBA_EXE='~/.pyenv/versions/anaconda3-2023.09-0/bin/micromamba';
+export MAMBA_ROOT_PREFIX='~/micromamba';
 __mamba_setup="$("$MAMBA_EXE" shell hook --shell zsh --root-prefix "$MAMBA_ROOT_PREFIX" 2> /dev/null)"
 if [ $? -eq 0 ]; then
     eval "$__mamba_setup"
@@ -43,10 +43,16 @@ export PATH=$PATH:"/Library/TeX/texbin/latex":"/Library/TeX/texbin/dvips"
 export PATH=$PATH:"/opt/homebrew/bin/inkscape"
 
 # # The next line updates PATH for the Google Cloud SDK.
-# if [ -f '/Users/varunagrawal/projects/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/varunagrawal/projects/google-cloud-sdk/path.zsh.inc'; fi
+# if [ -f '~/projects/google-cloud-sdk/path.zsh.inc' ]; then . '~/projects/google-cloud-sdk/path.zsh.inc'; fi
 
 # # The next line enables shell command completion for gcloud.
-# if [ -f '/Users/varunagrawal/projects/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/varunagrawal/projects/google-cloud-sdk/completion.zsh.inc'; fi
+# if [ -f '~/projects/google-cloud-sdk/completion.zsh.inc' ]; then . '~/projects/google-cloud-sdk/completion.zsh.inc'; fi
 
 
 export PATH="$(brew --prefix)/opt/openjdk/bin:$PATH"
+
+# The following lines have been added by Docker Desktop to enable Docker CLI completions.
+fpath=(~/.docker/completions $fpath)
+autoload -Uz compinit
+compinit
+# End of Docker CLI completions

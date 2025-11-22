@@ -118,7 +118,6 @@ plugins=(
     npm
     pip
     postgres
-    poetry
     pyenv
     python
     ruby
@@ -169,6 +168,19 @@ alias emacs="emacs"
 # POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon dir vcs)
 # POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(virtualenv pyenv rvm status history)
 
+case `uname` in
+  Darwin)
+    source $HOME/.zsh_macos
+  ;;
+  Linux)
+    source $HOME/.zsh_linux
+  ;;
+esac
+
+# Allow linker to find library paths
+export CMAKE_PREFIX_PATH=~/borglab/libs:$CMAKE_PREFIX_PATH
+### For MacOS @rpath
+export DYLD_LIBRARY_PATH=~/borglab/libs/lib:$DYLD_LIBRARY_PATH
 
 ######################
 ### uv auto complete
@@ -209,7 +221,15 @@ case `uname` in
   ;;
 esac
 
+
+## RVM
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"
+
+
 ## SDKMAN
+
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+
